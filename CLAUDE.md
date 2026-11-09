@@ -4,17 +4,19 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project state
 
-`diskscan` is a Go disk analyser (Coding Challenge #145). The repo currently holds only `ROADMAP.md`, which is the source of truth for scope, phase order and the planned package layout. No Go code, `go.mod` or Makefile exists yet; check the roadmap's phase checkboxes for progress.
+`diskscan` is a Go disk analyser (Coding Challenge #145, module `github.com/Pragya28/diskscan`). `ROADMAP.md` is the source of truth for scope, phase order and the package layout; check its phase checkboxes for progress. Phase 0 scaffolding is in place: `go.mod`, an empty package per `internal/` dir (each just a `doc.go`), a stub `cmd/diskscan/main.go`, `Makefile`, `scripts/fixture.sh`, `docs/baseline.txt` and `.github/workflows/ci.yml`. There is no real logic yet.
 
 ## How to work here
 
 This is a learn-Go-as-you-go project. The user writes all Go code. Explain concepts and discuss the implementation, draw workflow diagrams where useful, then review what the user wrote. Do not write Go implementations unless asked. Non-Go files (shell scripts, Makefile, CI workflows, docs, config) can be written directly.
 
-## Planned commands (Phase 0, not yet created)
+## Commands
 
 - `make build`: `go build -o bin/diskscan ./cmd/diskscan`
 - `make test`: `go test ./...`; single test: `go test ./internal/treemap -run TestName`
-- `make fixture`: rebuilds the `testroot` fixture tree (shell script, macOS/Linux)
+- `make fixture`: deletes and rebuilds the git-ignored `testroot/` (the challenge tree plus `oldproject/`, `readonly/` and a `loop` symlink; macOS/Linux shell). Includes a `chmod 000` dir, so `rm -rf testroot` alone fails; use the script.
+- `docs/baseline.txt` holds reference `du -sk`, `df -h` and APFS numbers (`testroot` is 34 entries from `find`, 107532 KB from `du -sk`) to compare scanner output against.
+- CI (`.github/workflows/ci.yml`) runs `go build` and `go test` on macOS only; add `ubuntu-latest` in Phase 15 and `windows-latest` in Phase 14, when their `internal/platform` files exist.
 
 ## Architecture (from the roadmap)
 
