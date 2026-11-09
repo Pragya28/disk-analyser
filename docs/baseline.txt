@@ -1,0 +1,44 @@
+# Baseline 2026-11-09
+
+## du -sk testroot (and top-level)
+du: testroot/locked: Permission denied
+107532	testroot
+du: testroot/locked: Permission denied
+5124	testroot/docs
+0	testroot/loop
+51200	testroot/media
+15360	testroot/old
+4	testroot/oldproject
+24580	testroot/projects
+1024	testroot/readonly
+0	testroot/sparse.img
+10240	testroot/.cache
+
+## find testroot | wc -l
+      34
+
+## df -h testroot
+Filesystem      Size    Used   Avail Capacity iused ifree %iused  Mounted on
+/dev/disk3s5   228Gi   155Gi    39Gi    80%    3.4M  410M    1%   /System/Volumes/Data
+
+## diskutil apfs list (summary)
+APFS Containers (3 found)
++-- Container disk3 5F68F59A-6A9A-4FC6-929A-9DC75D251D6B
+    APFS Container Reference:     disk3
+    Size (Capacity Ceiling):      245107195904 B (245.1 GB)
+    Capacity In Use By Volumes:   203168514048 B (203.2 GB) (82.9% used)
+    Capacity Not Allocated:       41938681856 B (41.9 GB) (17.1% free)
+    +-> Volume disk3s1 C9081487-29BB-48C6-A4A3-61EF96516C49
+    |   APFS Volume Disk (Role):   disk3s1 (System)
+    |   Capacity Consumed:         13659070464 B (13.7 GB)
+    +-> Volume disk3s2 B23FF9AE-3501-4B7B-A26A-2C205B0187CB
+    |   APFS Volume Disk (Role):   disk3s2 (Preboot)
+    |   Capacity Consumed:         10894245888 B (10.9 GB)
+    +-> Volume disk3s3 32DA7E12-205D-4C65-8CDE-39815FF09C02
+    |   APFS Volume Disk (Role):   disk3s3 (Recovery)
+    |   Capacity Consumed:         1537130496 B (1.5 GB)
+    +-> Volume disk3s5 D9C7E30E-7A83-4234-BD32-5E3FF5711497
+    |   APFS Volume Disk (Role):   disk3s5 (Data)
+    |   Capacity Consumed:         166123565056 B (166.1 GB)
+    +-> Volume disk3s6 8452DF32-0B64-478F-BE3D-338808CEE01D
+        APFS Volume Disk (Role):   disk3s6 (VM)
