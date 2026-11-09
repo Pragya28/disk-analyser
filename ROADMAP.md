@@ -30,11 +30,11 @@ Platform interface (the only OS-specific code):
 - `ProtectedPaths() []string`
 
 ## Phase 0: Setup
-- [ ] `go mod init`, repo, `internal/` layout above, `Makefile` or `Taskfile`
-- [ ] `make fixture` builds the challenge `testroot` (macOS and Linux shell)
-- [ ] Extra fixtures: symlink loop, file swapped for a directory, read-only dir
-- [ ] Record `du -sk`, `df -h` and `diskutil apfs list` numbers for later comparison
-- [ ] GitHub Actions matrix: macos-latest, windows-latest, ubuntu-latest running `go test ./...`
+- [x] `go mod init`, repo, `internal/` layout above, `Makefile` or `Taskfile`
+- [x] `make fixture` builds the challenge `testroot` (macOS and Linux shell)
+- [x] Extra fixtures: symlink loop, read-only dir (file swapped for a directory is done by hand in Phase 11)
+- [x] Record `du -sk`, `df -h` and `diskutil apfs list` numbers for later comparison
+- [ ] GitHub Actions matrix: macos-latest running `go test ./...` (add ubuntu-latest in Phase 15, windows-latest in Phase 14)
 
 ## Phase 1: Scan (Step 1)
 - [ ] Walker using `Lstat` and `ReadDir` only, strictly read-only
